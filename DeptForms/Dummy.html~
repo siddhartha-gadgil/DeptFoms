@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Leave Application </title>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/jspdf.js"></script>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/libs/Deflate/adler32cs.js"></script>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/libs/FileSaver.js/FileSaver.js"></script>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/libs/Blob.js/BlobBuilder.js"></script>
+
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/jspdf.plugin.addimage.js"></script>
+
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/jspdf.plugin.standard_fonts_metrics.js"></script>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/jspdf.plugin.split_text_to_size.js"></script>
+	<script type="text/javascript" src="../jsPDF-0.9.0rc2/jspdf.plugin.from_html.js"></script>
+	<script type="text/javascript" src="DummyScript.js"></script>
+</head>
+
+<body>
+
+<h1>Leave Application</h1>
+
+<p> Name:
+<input id="name" type="text">
+</p>
+
+<p> Duration:
+<input id="duration" type="text">
+</p>
+
+<button type="button" onclick="makePDF()">Make PDF</button>
+
+
+
+<script>
+
+function makePDF()
+{
+var nm = document.getElementById("name").value;
+var x=document.getElementById("duration").value;
+var doc = new jsPDF()
+
+doc.setFontSize(22)
+doc.text(20, 10, "Casual Leave Application")
+
+doc.setFontSize(14)
+doc.text(10, 30, "I, " + nm + ", wish to apply for casual leave for the duration \n of "+ x + " days. Kindly grant me the same.")
+doc.save("leave.pdf")
+}
+</script>
+
+
+</body>
+</html> 
