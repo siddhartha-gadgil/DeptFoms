@@ -5,8 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index
 
-# Course proeferences
-GET     /preferences                     controllers.Application.index
+# Course timing preferences
+GET     /timing-preferences/:id     controllers.Application.preferencesForm(id)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
