@@ -25,7 +25,8 @@ lazy val facultyfeedbackClient = (project in file("facultyfeedback-client")).set
   sourceMapsDirectories += facultyfeedbackSharedJs.base / "..",
   unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.8.0"
+    "org.scala-js" %%% "scalajs-dom" % "0.8.0",
+    "com.lihaoyi" %%% "scalatags" % "0.5.2"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSPlay).
   dependsOn(facultyfeedbackSharedJs)
