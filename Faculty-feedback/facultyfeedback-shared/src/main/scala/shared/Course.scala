@@ -19,7 +19,18 @@ object Course{
   
   def apply(id: Int, name: String, username: String) = desc(id, name, username)
   
-  implicit val aug2015 : List[Course] = ???
+  implicit val aug2015 : List[Course]  = List(
+      (212,  "ALGEBRA I", "ABHISHEK BANERJEE"),
+      (219,   "LINEAR ALGEBRA", "HARISH SESHADRI"),
+      (221,   "ANALYSIS I", "S. THANGAVELU"),
+      (223,   "FUNCTIONAL  ANALYSIS", "T. BHATTACHARYYA"),
+      (231,   "TOPOLOGY I", "SIDDHARTHA GADGIL"),
+      (242,   "PDE", "MRINAL. K. GHOSH"),
+      (261,   "PROBABILITY MODELS", "ARVIND AYYER"),
+      (232,   "INTRO TO ALGEBRAIC TOPOPLOGY", "BASUDEB DATTA"),
+      (361,   "PROBABILITY THEORY", "MANJUNATH KRISHNAPUR")
+      ) map ((a) => Course(a._1, a._2, a._3))
+      
   
   def get(url: String)(implicit l : List[Course]) = (l find (_.url == url)).get
   
