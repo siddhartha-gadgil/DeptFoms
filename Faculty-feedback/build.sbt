@@ -9,7 +9,8 @@ lazy val facultyfeedbackServer = (project in file("facultyfeedback-server")).set
   pipelineStages := Seq(scalaJSProd, gzip),
   libraryDependencies ++= Seq(
     "com.vmunier" %% "play-scalajs-scripts" % "0.2.1",
-    "org.webjars" % "jquery" % "1.11.1"
+    "org.webjars" % "jquery" % "1.11.1",
+    "com.lihaoyi" %% "upickle" % "0.2.8"
   ),
   // Heroku specific
   herokuAppName in Compile := "your-heroku-app-name",
@@ -26,7 +27,8 @@ lazy val facultyfeedbackClient = (project in file("facultyfeedback-client")).set
   unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.8.0",
-    "com.lihaoyi" %%% "scalatags" % "0.5.2"
+    "com.lihaoyi" %%% "scalatags" % "0.5.2",
+    "com.lihaoyi" %%% "upickle" % "0.2.8"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSPlay).
   dependsOn(facultyfeedbackSharedJs)

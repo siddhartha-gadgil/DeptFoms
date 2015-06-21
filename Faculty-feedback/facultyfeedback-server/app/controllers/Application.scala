@@ -7,6 +7,10 @@ import shared.Course
 
 import shared.Course._
 
+import shared._
+
+import upickle._
+
 object Application extends Controller {
 
   def index = Action {
@@ -17,4 +21,9 @@ object Application extends Controller {
     val course = get(id)
     Ok(id)
   }
+  
+  def preferences = Action (parse.text){request =>
+    val pref = read[(Int, List[(Int, Timing)])](request.body)
+    println(pref)
+    Ok("received preferences")}
 }
