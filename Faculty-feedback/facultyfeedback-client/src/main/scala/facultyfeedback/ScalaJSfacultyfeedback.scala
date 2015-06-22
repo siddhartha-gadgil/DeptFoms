@@ -21,6 +21,8 @@ object ScalaJSfacultyfeedback extends js.JSApp {
 
   }
   
+  def jsdiv = dom.document.getElementById("jsdiv")
+  
   def update(): Unit = {
     submitButton.value = submitText
   }
@@ -69,11 +71,26 @@ object ScalaJSfacultyfeedback extends js.JSApp {
   
   import dom.ext._
   
+  import scala.scalajs
+                .concurrent
+                .JSExecutionContext
+                .Implicits
+                .runNow
+  
   submitButton.onclick = (e : dom.Event) => {
     update()
-    Ajax.post("/preferences", postData)
+    Ajax.post("/preferences", postData).onSuccess{
+      case xhr =>
+        {
+          jsdiv.innerHTML = """<h2> Thank you for your feedback</h2>"""
+        }
+    }
   }
   
   val queryDiv = div(timingChoiceDiv, div(clear.both)(submitButton)).render
+  
+  def query() = {
+    jsdiv.appendChild(queryDiv)
+  }
 }
 

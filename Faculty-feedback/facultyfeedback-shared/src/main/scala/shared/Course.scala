@@ -32,7 +32,7 @@ object Course{
       ) map ((a) => Course(a._1, a._2, a._3))
       
   
-  def get(url: String)(implicit l : List[Course]) = (l find (_.url == url)).get
+  def getOpt(url: String)(implicit l : List[Course]) = (l find (_.url == url))
   
   def get(id: Int)(implicit l : List[Course]) = (l find (_.id == id)).get
 }

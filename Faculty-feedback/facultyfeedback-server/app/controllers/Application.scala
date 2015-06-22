@@ -18,12 +18,14 @@ object Application extends Controller {
   }
 
   def preferencesForm(id : String) = Action{
-    val course = get(id)
-    Ok(id)
+    val course = getOpt(id)
+    val resp = (course map ((c) => Ok(views.html.coursetimings(c))))
+    resp.getOrElse(NotFound("Course not found or incorrect url"))
   }
   
   def preferences = Action (parse.text){request =>
+    println(request.body)
     val pref = read[(Int, List[(Int, Timing)])](request.body)
     println(pref)
-    Ok("received preferences")}
+    Ok(write(pref))}
 }
