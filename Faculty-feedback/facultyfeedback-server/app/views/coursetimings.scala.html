@@ -2,8 +2,18 @@
 @(course: shared.Course)
 
 @main("Course Timing  Preferences"){
+	<div id="page" class="private">query</div>
+	<h2>Course Timing Preferences</h2>
+	<p> Please give your timing preferences. 
+	You may give as many preferences as you like (more the better) and you may give several 1st preferences etc. 
+	You <strong>must</strong> give at least three preferences, at least one 1st or higher, at least two 2nd or higher ... </p>
+	
+	<p> Enter preferences in the right column. You will get a submit button once you have given enough preferences.</p>
+	
 	<div id="course-info">
-	<p> <strong>Course:</strong> Ma <span id="course-id">@course.id</span></p>
+	<p> <strong>Course:</strong> Ma <span id="course-id">@course.id</span>
+	: @course.name
+	</p>
 	<p> <strong>Instructor:</strong> @course.instructor.name</p> 
 	</div>
 	<div id="jsdiv"></div>

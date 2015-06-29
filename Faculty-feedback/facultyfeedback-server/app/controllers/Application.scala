@@ -11,6 +11,8 @@ import shared._
 
 import upickle._
 
+import models.FileIO._
+
 object Application extends Controller {
 
   def index = Action {
@@ -24,8 +26,10 @@ object Application extends Controller {
   }
   
   def preferences = Action (parse.text){request =>
-    println(request.body)
-    val pref = read[(Int, List[(Int, Timing)])](request.body)
+    val inp = request.body
+    println(inp)
+    writeln("data/pref.txt", inp)
+    val pref = read[(Int, List[(Int, Timing)])](inp)
     println(pref)
     Ok(write(pref))}
 }

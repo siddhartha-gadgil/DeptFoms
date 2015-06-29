@@ -13,12 +13,21 @@ import upickle._
 
 object ScalaJSfacultyfeedback extends js.JSApp {
   def main(): Unit = {
+    val page = dom.document.getElementById("page").textContent 
+    
+    page match {
+      case "index" => shoutOut()
+      case "query" => query()
+    }
+
+  }
+  
+  def shoutOut() = {
     dom.document.getElementById("scalajsShoutOut").textContent = SharedMessages.itWorks
 
     def message = dom.document.getElementById("message").textContent
 
     dom.document.getElementById("jsdiv").textContent = "Hello from Scala-js: " + message
-
   }
   
   def jsdiv = dom.document.getElementById("jsdiv")
@@ -28,18 +37,20 @@ object ScalaJSfacultyfeedback extends js.JSApp {
   }
   
   case class TimingChoice(t: Timing){
-    val inp = input(`type` := "number").render
+    val inp = input(`type` := "number", size := 4, width:= 30).render
     
     inp.onchange = (e: dom.Event) => update()
+    
+    inp.oninput = (e: dom.Event) => update()
     
     def choice = Try(inp.value.toInt).toOption filter (_ > 0)
     
     def choiceData = choice map ((_, t))
     
     val queryDiv = div(overflow.auto, clear.both)(
-        div(float.left)(inp, width:= 4),
-        div(float.left, width := 100)(t.days),
-        div(float.left, width := 100)(t.times)
+        div(float.left, width := 300)(t.days),
+        div(float.left, width := 200)(t.times),
+        div(float.left, width:= 6)(inp)
         )
   }
   
@@ -64,10 +75,10 @@ object ScalaJSfacultyfeedback extends js.JSApp {
     (choicesAbove(3) > 2)
   
   def submitText = 
-    if (enoughChoices) "Submit (more choices will be appreciated)" 
-    else "More choices please"
+    if (enoughChoices) "Submit (more preferences will be appreciated)" 
+    else "More preferences please"
   
-  val submitButton = input(`type` := "submit", value := "More choices please").render    
+  val submitButton = input(`type` := "submit", value := "More preferences please").render    
   
   import dom.ext._
   
@@ -79,7 +90,7 @@ object ScalaJSfacultyfeedback extends js.JSApp {
   
   submitButton.onclick = (e : dom.Event) => {
     update()
-    Ajax.post("/preferences", postData).onSuccess{
+    if (enoughChoices) Ajax.post("/preferences", postData).onSuccess{
       case xhr =>
         {
           jsdiv.innerHTML = """<h2> Thank you for your feedback</h2>"""
@@ -87,7 +98,7 @@ object ScalaJSfacultyfeedback extends js.JSApp {
     }
   }
   
-  val queryDiv = div(timingChoiceDiv, div(clear.both)(submitButton)).render
+  val queryDiv = div(timingChoiceDiv, div(clear.both)(p("")), div(clear.both)(submitButton)).render
   
   def query() = {
     jsdiv.appendChild(queryDiv)

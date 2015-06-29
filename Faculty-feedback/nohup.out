@@ -1,0 +1,7 @@
+Play server process ID is 14226
+[[37minfo[0m] play - Application started (Prod)
+[[37minfo[0m] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+[212,[[1,{"days":"Monday, Wedesday, Friday","times":"8:00  -  9:00"}],[2,{"days":"Monday, Wedesday, Friday","times":"11:00 - 12:00"}],[1,{"days":"Monday, Wedesday, Friday","times":"2:00  -  3:00"}]]]
+(212,List((1,Timing(Monday, Wedesday, Friday,8:00  -  9:00)), (2,Timing(Monday, Wedesday, Friday,11:00 - 12:00)), (1,Timing(Monday, Wedesday, Friday,2:00  -  3:00))))
+[212,[[1,{"days":"Monday, Wedesday, Friday","times":"8:00  -  9:00"}],[3,{"days":"Monday, Wedesday, Friday","times":"9:00  - 10:00"}],[2,{"days":"Monday, Wedesday, Friday","times":"10:00 - 11:00"}]]]
+(212,List((1,Timing(Monday, Wedesday, Friday,8:00  -  9:00)), (3,Timing(Monday, Wedesday, Friday,9:00  - 10:00)), (2,Timing(Monday, Wedesday, Friday,10:00 - 11:00))))
