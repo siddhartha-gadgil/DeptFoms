@@ -28,7 +28,7 @@ object Application extends Controller {
   def preferences = Action (parse.text){request =>
     val inp = request.body
     println(inp)
-    writeln("data/pref.txt", inp)
+    writeln(prefFile, inp)
     val pref = read[(Int, List[(Int, Timing)])](inp)
     println(pref)
     Ok(write(pref))}

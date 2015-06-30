@@ -1,6 +1,11 @@
 package models
 import java.io._
 
+import upickle._
+
+import shared._
+
+import shared.Timing
 
 /**
  * @author gadgil
@@ -40,4 +45,8 @@ object FileIO {
     }
     writer.close
   }
+  
+  def readFile(filename: String) = scala.io.Source.fromFile(filename).getLines
+  
+  def prefList = (readFile(prefFile) map (read[(Int, List[(Int, Timing)])])).toList
 }

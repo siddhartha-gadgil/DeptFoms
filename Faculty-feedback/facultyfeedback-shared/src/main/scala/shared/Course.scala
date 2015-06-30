@@ -62,4 +62,6 @@ object Course{
   val mailscript = "mails/sendmails.sh"
   
   val server = "localhost:9000"
+  
+  val prefFile = "data/pref.txt"
 }
