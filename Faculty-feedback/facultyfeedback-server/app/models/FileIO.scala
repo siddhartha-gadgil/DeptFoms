@@ -49,4 +49,6 @@ object FileIO {
   def readFile(filename: String) = scala.io.Source.fromFile(filename).getLines
   
   def prefList = (readFile(prefFile) map (read[(Int, List[(Int, Timing)])])).toList
+  
+  def prefMap = prefList.toMap
 }
