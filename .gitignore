@@ -27,7 +27,7 @@ shared/.jvm
 # eclipse
 .scala_dependencies
 .buildpath
-.cache
+.cache*
 .target
 bin/
 

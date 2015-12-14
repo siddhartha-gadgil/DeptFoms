@@ -1,4 +1,4 @@
-package shared
+package schedule
 
 import Faculty._
 
@@ -37,7 +37,7 @@ object Course{
 
   def apply(id: Int, name: String, username: String) = desc(id, name, username)
 
-  implicit val aug2015 : List[Course]  = List(
+  val aug2015 : List[Course]  = List(
       (212,  "ALGEBRA I", "abhishek"),
       (219,   "LINEAR ALGEBRA", "harish"),
       (221,   "ANALYSIS I", "veluma"),
@@ -52,10 +52,30 @@ object Course{
       (215, "INTRO. TO MODULAR FORMS", "jaban")
       ) map ((a) => Course(a._1, a._2, a._3))
 
+  import Faculty._
+
+  implicit val jan2016 : List[Course] = List(
+    (213, "Algebra II", mousumi),
+    (222, "Analysis II", nands),
+    (224, "Complex Analysis", bharali),
+    (229, "Calculus on Manifolds", gm),
+    (241, "ODE", gudi),
+    (320, "Representation Theory of Compact Lie Groups", veluma),
+    (313, "Algebraic Number Theory", patil),
+    (317, "Intro to Analytical Number Theory", somu),
+    (319, "Algebraic Combinatorics", arvind),
+    (315, "Lie Algebras and their Representations", naru),
+    (314, "Intro to Algebraic Geometry", umesh),
+    (332, "Algebraic Topology", subhojoy)
+  ) map ((a) => Course(a._1, a._2, a._3))
+
+
 
   def getOpt(url: String)(implicit l : List[Course]) = (l find (_.url == url))
 
   def get(id: Int)(implicit l : List[Course]) = (l find (_.id == id)).get
+
+  def get(fac: Faculty)(implicit l : List[Course]) = (l find (_.instructor == fac)).get
 
   val dir = "mails/"
 

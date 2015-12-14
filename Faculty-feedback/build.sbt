@@ -1,7 +1,7 @@
 import sbt.Project.projectToRef
 
 lazy val clients = Seq(facultyfeedbackClient)
-lazy val scalaV = "2.11.6"
+lazy val scalaV = "2.11.7"
 
 lazy val facultyfeedbackServer = (project in file("facultyfeedback-server")).settings(
   scalaVersion := scalaV,
@@ -10,7 +10,7 @@ lazy val facultyfeedbackServer = (project in file("facultyfeedback-server")).set
   libraryDependencies ++= Seq(
     "com.vmunier" %% "play-scalajs-scripts" % "0.2.1",
     "org.webjars" % "jquery" % "1.11.1",
-    "com.lihaoyi" %% "upickle" % "0.2.8"
+    "com.lihaoyi" %% "upickle" % "0.3.4"
   ),
   // Heroku specific
   herokuAppName in Compile := "your-heroku-app-name",
@@ -28,7 +28,7 @@ lazy val facultyfeedbackClient = (project in file("facultyfeedback-client")).set
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.8.0",
     "com.lihaoyi" %%% "scalatags" % "0.5.2",
-    "com.lihaoyi" %%% "upickle" % "0.2.8"
+    "com.lihaoyi" %%% "upickle" % "0.3.4"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSPlay).
   dependsOn(facultyfeedbackSharedJs)
