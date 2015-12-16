@@ -66,7 +66,8 @@ object Course{
     (319, "Algebraic Combinatorics", arvind),
     (315, "Lie Algebras and their Representations", naru),
     (314, "Intro to Algebraic Geometry", umesh),
-    (332, "Algebraic Topology", subhojoy)
+    (332, "Algebraic Topology", subhojoy),
+    (369, "Quantum Mechanics", krishna)
   ) map ((a) => Course(a._1, a._2, a._3))
 
 
