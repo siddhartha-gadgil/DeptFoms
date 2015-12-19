@@ -77,9 +77,12 @@ object Course{
   def get(id: Int)(implicit l : List[Course]) = (l find (_.id == id)).get
 
   def get(fac: Faculty)(implicit l : List[Course]) = (l find (_.instructor == fac)).get
-
+  
   val dir = "mails/"
 
+//  def instructors(implicit l : List[Course]): List[Faculty]
+//    = l map (_.instructor)
+  
   val mailscript = "mails/sendmails.sh"
 
   val server = "localhost:9000"
