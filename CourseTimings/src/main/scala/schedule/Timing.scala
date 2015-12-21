@@ -15,7 +15,7 @@ object Timing {
         "12:00 -  1:00",
         "2:00  -  3:00",
         "3:00  -  4:00"
-      ) map (Timing("Monday, Wedesday, Friday", _))
+      ) map (Timing("Monday, Wednesday, Friday", _))
    val tuth =
      List(
 //         "8:00  -  9:30",

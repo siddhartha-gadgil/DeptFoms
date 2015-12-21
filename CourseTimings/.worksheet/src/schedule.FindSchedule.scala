@@ -2,25 +2,48 @@ package schedule
 
 import Faculty._
 
-object FindSchedule {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(101); 
-  println("Welcome to the Scala worksheet");$skip(28); 
+import Jan2016._
+
+object FindSchedule {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(119); 
+  println("Welcome to the Scala worksheet");$skip(34); 
   
-  val s = Schedule.first;System.out.println("""s  : schedule.Schedule = """ + $show(s ));$skip(24); val res$0 = 
+  val rawbase = level(1, 1, 4);System.out.println("""rawbase  : List[schedule.Schedule] = """ + $show(rawbase ));$skip(20); val res$0 = 
+   
+   rawbase.size;System.out.println("""res0: Int = """ + $show(res$0));$skip(30); 
 
-	Preferences.get(somu);System.out.println("""res0: Option[schedule.Preferences] = """ + $show(res$0));$skip(16); val res$1 = 
-	
-	s.map.keySet;System.out.println("""res1: scala.collection.immutable.Set[schedule.Faculty] = """ + $show(res$1));$skip(18); val res$2 = 
-	
-	s.notFirstPref;System.out.println("""res2: scala.collection.immutable.Map[schedule.Faculty,Option[Int]] = """ + $show(res$2));$skip(59); 
+	val better = level(1, 1, 3);System.out.println("""better  : List[schedule.Schedule] = """ + $show(better ));$skip(56); 
 
-	val teachers = (Course.jan2016 map (_.instructor)).toSet;System.out.println("""teachers  : scala.collection.immutable.Set[schedule.Faculty] = """ + $show(teachers ));$skip(27); val res$3 = 
+	val base = rawbase filter (clashesToAvoid(_).isEmpty);System.out.println("""base  : List[schedule.Schedule] = """ + $show(base ));$skip(12); val res$1 = 
 
-	teachers -- s.map.keySet;System.out.println("""res3: scala.collection.immutable.Set[schedule.Faculty] = """ + $show(res$3));$skip(12); val res$4 = 
+	base.size;System.out.println("""res1: Int = """ + $show(res$1));$skip(21); 
+	
+	val c = base.head;System.out.println("""c  : schedule.Schedule = """ + $show(c ));$skip(63); val res$2 = 
+                                                  
+  c.clashes;System.out.println("""res2: List[(schedule.Course, schedule.Course)] = """ + $show(res$2));$skip(17); val res$3 = 
+ 
+	clashNames(c);System.out.println("""res3: List[(String, String)] = """ + $show(res$3));$skip(68); val res$4 = 
+                                                  
+  c.notFirstPref;System.out.println("""res4: scala.collection.immutable.Map[schedule.Faculty,Option[Int]] = """ + $show(res$4));$skip(56); 
 
-	s.clashes;System.out.println("""res4: List[(schedule.Course, schedule.Course)] = """ + $show(res$4));$skip(18); val res$5 = 
+	val first = Preferences.revealed map (_.firstOpt.get);System.out.println("""first  : List[schedule.Timing] = """ + $show(first ));$skip(14); val res$5 = 
 	
-	s.clashes.size;System.out.println("""res5: Int = """ + $show(res$5));$skip(16); val res$6 = 
+	first.size;System.out.println("""res5: Int = """ + $show(res$5));$skip(20); val res$6 = 
 	
+	first.toSet.size
 	
-	s.clashSet;System.out.println("""res6: scala.collection.immutable.Map[schedule.Timing,List[schedule.Course]] = """ + $show(res$6))}
+	import java.io._;System.out.println("""res6: Int = """ + $show(res$6));$skip(61); 
+	
+	val scratch = new PrintWriter("data");System.out.println("""scratch  : java.io.PrintWriter = """ + $show(scratch ));$skip(33); 
+	
+	scratch.println("# Schedule");$skip(140); val res$7 = 
+	
+	for ((fac, timing) <- c.map) yield (scratch.println(s""""${fac.name}", "${Course.get(fac).name}", "${timing.days} ${timing.times}" """));System.out.println("""res7: scala.collection.immutable.Iterable[Unit] = """ + $show(res$7));$skip(21); 
+	
+	scratch.println();$skip(32); 
+	
+	scratch.println("# clashes");$skip(42); 
+	
+	clashNames(c).foreach(scratch.println);$skip(17); 
+	
+	scratch.close}
 }

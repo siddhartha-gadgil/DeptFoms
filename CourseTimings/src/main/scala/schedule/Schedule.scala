@@ -19,6 +19,8 @@ case class Schedule(map: Map[Faculty, Timing]) {
     for ((fac, t) <- map; pref <- Preferences.get(fac) if pref.weight(t) != Some(0)) yield (fac -> pref.weight(t))
 
   def at(t: Timing) = for ((fac, timing) <- map if timing == t) yield (Course.get(fac))
+  
+  def notClashAt(first: Int, second: Int) = !((clashes map {case (x, y) => (x.id, y.id)}) contains ((first, second)))
 }
 
 
