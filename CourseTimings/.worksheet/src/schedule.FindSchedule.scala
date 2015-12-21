@@ -31,19 +31,19 @@ object FindSchedule {;import org.scalaide.worksheet.runtime.library.WorksheetSup
 	
 	first.toSet.size
 	
-	import java.io._;System.out.println("""res6: Int = """ + $show(res$6));$skip(61); 
+	import java.io._;System.out.println("""res6: Int = """ + $show(res$6));$skip(65); 
 	
-	val scratch = new PrintWriter("data");System.out.println("""scratch  : java.io.PrintWriter = """ + $show(scratch ));$skip(33); 
+	val scratch = new PrintWriter("data.csv");System.out.println("""scratch  : java.io.PrintWriter = """ + $show(scratch ));$skip(33); 
 	
-	scratch.println("# Schedule");$skip(140); val res$7 = 
+	scratch.println("# Schedule");$skip(169); val res$7 = 
 	
-	for ((fac, timing) <- c.map) yield (scratch.println(s""""${fac.name}", "${Course.get(fac).name}", "${timing.days} ${timing.times}" """));System.out.println("""res7: scala.collection.immutable.Iterable[Unit] = """ + $show(res$7));$skip(21); 
+	for ((fac, timing) <- c.map) yield (scratch.println(s""""${Course.get(fac).id}", "${Course.get(fac).name}",  "${fac.name}", "${timing.days}", "${timing.times}" """));System.out.println("""res7: scala.collection.immutable.Iterable[Unit] = """ + $show(res$7));$skip(21); 
 	
 	scratch.println();$skip(32); 
 	
-	scratch.println("# clashes");$skip(42); 
+	scratch.println("# clashes");$skip(70); 
 	
-	clashNames(c).foreach(scratch.println);$skip(17); 
+	clashNames(c).foreach((x) => scratch.println(s"${x._1}, ${x._2}"));$skip(17); 
 	
 	scratch.close}
 }

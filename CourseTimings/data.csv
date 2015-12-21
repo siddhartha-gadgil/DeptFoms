@@ -1,0 +1,19 @@
+# Schedule
+"241", "ODE",  "Thirupathi Gudi", "Tuesday, Thursday", "3:30  -  5:00" 
+"229", "Calculus on Manifolds",  "Gadadhar Misra", "Monday, Wednesday, Friday", "3:00  -  4:00" 
+"315", "Lie Algebras and their Representations",  "E. K. Narayanan", "Monday, Wednesday, Friday", "9:00  - 10:00" 
+"224", "Complex Analysis",  "Gautam Bharali", "Monday, Wednesday, Friday", "11:00 - 12:00" 
+"319", "Algebraic Combinatorics",  "Arvind Ayyer", "Tuesday, Thursday", "2:00  -  3:30" 
+"332", "Algebraic Topology",  "Subhojoy Gupta", "Monday, Wednesday, Friday", "11:00 - 12:00" 
+"222", "Analysis II",  "A. K. Nandakumaran", "Tuesday, Thursday", "9:30  - 11:00" 
+"314", "Intro to Algebraic Geometry",  "Umesh Dubey", "Monday, Wednesday, Friday", "2:00  -  3:00" 
+"317", "Intro to Analytical Number Theory",  "Sowmya Das", "Tuesday, Thursday", "11:00 - 12:30" 
+"213", "Algebra II",  "Mousumi Mandal", "Tuesday, Thursday", "11:00 - 12:30" 
+"313", "Algebraic Number Theory",  "Dilip P. Patil", "Tuesday, Thursday", "9:30  - 11:00" 
+"369", "Quantum Mechanics",  "Krishna Madali", "Tuesday, Thursday", "3:30  -  5:00" 
+
+# clashes
+ODE, Quantum Mechanics
+Complex Analysis, Algebraic Topology
+Analysis II, Algebraic Number Theory
+Algebra II, Intro to Analytical Number Theory

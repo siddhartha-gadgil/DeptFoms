@@ -81,11 +81,11 @@ object FindSchedule {
 	
 	import java.io._
 	
-	val scratch = new PrintWriter("data")     //> scratch  : java.io.PrintWriter = java.io.PrintWriter@71318ec4
+	val scratch = new PrintWriter("data.csv") //> scratch  : java.io.PrintWriter = java.io.PrintWriter@71318ec4
 	
 	scratch.println("# Schedule")
 	
-	for ((fac, timing) <- c.map) yield (scratch.println(s""""${fac.name}", "${Course.get(fac).name}", "${timing.days} ${timing.times}" """))
+	for ((fac, timing) <- c.map) yield (scratch.println(s""""${Course.get(fac).id}", "${Course.get(fac).name}",  "${fac.name}", "${timing.days}", "${timing.times}" """))
                                                   //> res7: scala.collection.immutable.Iterable[Unit] = List((), (), (), (), (), (
                                                   //| ), (), (), (), (), (), ())
 	
@@ -93,7 +93,7 @@ object FindSchedule {
 	
 	scratch.println("# clashes")
 	
-	clashNames(c).foreach(scratch.println)
+	clashNames(c).foreach((x) => scratch.println(s"${x._1}, ${x._2}"))
 	
 	scratch.close
 }
