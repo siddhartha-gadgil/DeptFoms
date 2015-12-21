@@ -17,18 +17,28 @@ case class Schedule(map: Map[Faculty, Timing]) {
 
   def notFirstPref =
     for ((fac, t) <- map; pref <- Preferences.get(fac) if pref.weight(t) != Some(0)) yield (fac -> pref.weight(t))
+
+  def at(t: Timing) = for ((fac, timing) <- map if timing == t) yield (Course.get(fac))
 }
+
+
 
 object Schedule{
   def bothInSet(s: Set[Int])(x: Int, y: Int) = (s contains x) && (s contains y)
-  
+
   def bothInSame(ss: Set[Set[Int]])(x: Int, y: Int) =
     ss exists ((s) => bothInSet(s)(x, y))
-  
-  implicit val core = Set(
+
+  val arvindClash = for (x<- Set(222, 224, 241, 317, 332)) yield Set(x, 319)
+
+  val core = Set(
       Set(213, 222, 224, 229, 241)
       )
-  
+
+
+
+  implicit val noClash = core ++ arvindClash
+
   def firstMap = ((Preferences.all map (_.firstPair)).flatten).toMap
 
   def first = Schedule(firstMap)
@@ -41,9 +51,9 @@ object Schedule{
         if (maxWeightCount == 1 && !ys.isEmpty)
           (for (w <- 0 to maxWeight - 1; c <- 0 to ys.size) yield (withBounds(w, c)(ys))
               ).foldLeft(List(): List[Map[Faculty, Timing]])(_++_)
-        else withBounds(maxWeight, maxWeightCount -1)(ys)   
+        else withBounds(maxWeight, maxWeightCount -1)(ys)
       val big = for(t<- prefs.get(maxWeight).toList; big <- bigPrev) yield (big + (x-> t))
-      val smallPrev = 
+      val smallPrev =
         withBounds(maxWeight, maxWeightCount)(ys)
       val small = for (t <- prefs.take(maxWeight); sm <- smallPrev) yield sm + (x -> t)
       big ++ small
@@ -51,5 +61,5 @@ object Schedule{
 
   def atLevel(maxWeight: Int, maxWeightCount: Int)(implicit l: List[Faculty]) =
     (withBounds(maxWeight, maxWeightCount)(l)) map (Schedule(_))
-  
+
 }
