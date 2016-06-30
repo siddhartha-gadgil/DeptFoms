@@ -15,6 +15,9 @@ dist
 .settings
 .DS_Store
 
+.ensime
+.ensime_cache
+
 # hidden cross project folders
 shared/.js
 shared/.jvm

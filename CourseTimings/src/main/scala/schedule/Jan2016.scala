@@ -3,7 +3,7 @@ package schedule
 object Jan2016{
   import Course._
 
-  import Faculty._
+  //import Faculty._
 
   import Preferences._
 

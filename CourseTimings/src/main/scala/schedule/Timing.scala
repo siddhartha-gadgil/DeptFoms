@@ -30,4 +30,6 @@ object Timing {
    val List(t930, t1100, t200, t330) = tuth
 
    val all = mwf ++ tuth
+
+   val morning = Set(m9, m10, m11, m12, t930, t1100)
 }
