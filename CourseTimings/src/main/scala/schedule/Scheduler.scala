@@ -26,7 +26,7 @@ class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => 
 
   def worstCase(t: Map[Course, Timing]) = (courses map ((c) => prefWeight(c, t(c)))).flatten.max
 
-  def badChoices(t: Map[Course, Timing], rank: Int)= (courses filter ((c) => prefWeight(c, t(c)) == rank))
+  def badChoices(t: Map[Course, Timing], rank: Int)= (courses filter ((c) => prefWeight(c, t(c)) == Some(rank)))
 
   def clashes(t: Map[Course, Timing]) = {
     for ((c1, t1) <- t.toList; (c2, t2) <- t.toList if c1 != c2 && t1 == t2) yield (c1, c2)
