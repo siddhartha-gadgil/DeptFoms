@@ -12,9 +12,11 @@ object Aug2016{
   val prefs =
     List(
       TP.sets(naru, (1,  morning)),
+      TP.sets(kverma, (1, Set(m11, m12, m3, t1100, t330))),
       TP(tirtha, m9, m10, m11, m12),
       TP(veluma, m10, m11, m12),
       TP(mkg, m10, m11, m12),
+      TP(skiyer, t1100, t330, t930),
       TP(gudi, t1100, t930, m9)
     )
 

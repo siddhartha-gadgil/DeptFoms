@@ -72,6 +72,7 @@ object Course{
 
   implicit val aug2016 : List[Course] =
     List(
+        (200, "Multivariable Calculus", kverma),
       (212,  "ALGEBRA I", abhishek),
       (219,   "LINEAR ALGEBRA",umesh),
       (221,   "ANALYSIS I", naru),
