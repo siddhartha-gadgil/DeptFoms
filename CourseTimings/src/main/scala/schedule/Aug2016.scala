@@ -22,8 +22,13 @@ object Aug2016{
 
   val core1 : Set[Course] = Set(212, 219, 221, 231, 261) map (get)
 
+  val ug3 : Set[Course] = Set(212, 219, 221, 231, 200) map (get) 
+  
   val core2 : Set[Course] = Set(223, 232, 242) map (get)
 
+  def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) = 
+    groups.map ((set) => ((set contains(c1)) && (set contains c2) && (c1 != c2))).fold(false)(_||_)
+  
   def avoidClash(c1: Course, c2: Course) =
     ((core1 contains(c1)) && (core1 contains c2) && (c1 != c2)) ||
     ((core2 contains(c1)) && (core2 contains c2) && (c1 != c2))
@@ -32,4 +37,4 @@ object Aug2016{
 
 import Aug2016._
 
-object Aug2016Scheduler extends Scheduler(prefs, avoidClash)
+object Aug2016Scheduler extends Scheduler(prefs, inSameSet(core1, core2, ug3))

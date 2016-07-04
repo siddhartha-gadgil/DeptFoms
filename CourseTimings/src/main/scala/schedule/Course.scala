@@ -85,10 +85,10 @@ object Course{
       (321,  "Analysis III", nands),
       (277,"NONLINEAR DYNAMICS", gudi),
       (215, "INTRO. TO MODULAR FORMS", jaban),
-      (1, "Introduction to Complex Dynamics", bharali),
-      (2, "Modular forms", somu),
-      (3, "Advanced Functional Analysis", tirtha),
-      (4, "Introduction to dynamical systems theory", janaki)
+      (380, "Introduction to Complex Dynamics", bharali),
+      (351, "Modular forms", somu),
+      (340, "Advanced Functional Analysis", tirtha),
+      (278, "Introduction to dynamical systems theory", janaki)
       ) map ((a) => Course(a._1, a._2, a._3))
 
 
