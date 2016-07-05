@@ -3,6 +3,8 @@ package schedule
 object Jan2016{
   import Course._
 
+  implicit val v = jan2016
+  
   //import Faculty._
 
   import Preferences._

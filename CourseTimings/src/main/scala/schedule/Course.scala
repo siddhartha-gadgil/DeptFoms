@@ -70,26 +70,7 @@ object Course{
     (369, "Quantum Mechanics", krishna)
   ) map ((a) => Course(a._1, a._2, a._3))
 
-  implicit val aug2016 : List[Course] =
-    List(
-        (200, "Multivariable Calculus", kverma),
-      (212,  "ALGEBRA I", abhishek),
-      (219,   "LINEAR ALGEBRA",umesh),
-      (221,   "ANALYSIS I", naru),
-      (223,   "FUNCTIONAL  ANALYSIS", veluma),
-      (231,   "TOPOLOGY I", subhojoy),
-      (242,   "PDE", gudi),
-      (261,   "PROBABILITY MODELS", mkg),
-      (232,   "INTRO TO ALGEBRAIC TOPOPLOGY", gadgil),
-      (361,   "PROBABILITY THEORY", skiyer),
-      (321,  "Analysis III", nands),
-      (277,"NONLINEAR DYNAMICS", gudi),
-      (215, "INTRO. TO MODULAR FORMS", jaban),
-      (380, "Introduction to Complex Dynamics", bharali),
-      (351, "Modular forms", somu),
-      (340, "Advanced Functional Analysis", tirtha),
-      (278, "Introduction to dynamical systems theory", janaki)
-      ) map ((a) => Course(a._1, a._2, a._3))
+  
 
 
   def getOpt(url: String)(implicit l : List[Course]) = (l find (_.url == url))

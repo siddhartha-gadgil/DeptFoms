@@ -1,11 +1,11 @@
 package schedule
 
-import Course._
+import Course.{jan2016 => _, _}
 
 case class TimingPreference(course: Course, choices : List[(Int, Set[Timing])])
 
 object TimingPreference{
-    def apply(fac: Faculty, ordered : Timing*) : TimingPreference = {
+    def apply(fac: Faculty, ordered : Timing*)(implicit courses: List[Course]) : TimingPreference = {
       val course = getOpt(fac).get
       val choices = ordered.toList.zipWithIndex.map {
         case (t, n) => (n+1, Set(t))
@@ -13,12 +13,12 @@ object TimingPreference{
       TimingPreference(course, choices)
     }
 
-    def sets(fac: Faculty, choices : (Int, Traversable[Timing])*) : TimingPreference =
+    def sets(fac: Faculty, choices : (Int, Traversable[Timing])*)(implicit courses: List[Course]) : TimingPreference =
       TimingPreference(getOpt(fac).get, choices.toList map {case (n, t) => (n, t.toSet)})
 
 }
 
-class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => Boolean){
+class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => Boolean)(implicit cs: List[Course]){
   val courses = prefs map (_.course)
 
   def prefWeight(c: Course, t: Timing): Option[Int] =
