@@ -40,7 +40,9 @@ object Aug2016{
       TP(abhishek, t330, t200, m3, m2, t1100),
       TP.sets(umesh, (1 -> Set(t200, t330)), (2 -> Set(m2, m3)), (3 -> Set(t1100, m11, m12))),
       TP(gadgil, m9, t930, m10, t1100, m11, m12),
-      TP(subhojoy, m10, m11, m12)
+      TP(subhojoy, m10, m11, m12),
+      TP(nands, t930, t1100),
+      TP(somu, t1100, t330, m11)
     )
 
   val core1 : Set[Course] = Set(212, 219, 221, 231, 261) map (get)
