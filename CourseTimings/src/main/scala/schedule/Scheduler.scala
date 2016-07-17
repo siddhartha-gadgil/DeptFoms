@@ -2,7 +2,9 @@ package schedule
 
 import Course.{jan2016 => _, _}
 
-case class TimingPreference(course: Course, choices : List[(Int, Set[Timing])])
+case class TimingPreference(course: Course, choices : List[(Int, Set[Timing])]){
+  def choicesBelow(k: Int) = choices filter (_._1 <= k)
+}
 
 object TimingPreference{
     def apply(fac: Faculty, ordered : Timing*)(implicit courses: List[Course]) : TimingPreference = {
@@ -18,7 +20,7 @@ object TimingPreference{
 
 }
 
-class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => Boolean)(implicit cs: List[Course]){
+class Scheduler(prefs: List[TimingPreference], clashToAvoid : (Course, Course) => Boolean)(implicit cs: List[Course]){
   val courses = prefs map (_.course)
 
   def prefWeight(c: Course, t: Timing): Option[Int] =
@@ -28,12 +30,17 @@ class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => 
 
   def badChoices(t: Map[Course, Timing], rank: Int)= (courses filter ((c) => prefWeight(c, t(c)) == Some(rank)))
 
+  def costPair(t: Map[Course, Timing]) = {
+    val rank = worstCase(t)
+    (rank, badChoices(t, rank).size)
+  }
+  
   def clashes(t: Map[Course, Timing]) = {
-    for ((c1, t1) <- t.toList; (c2, t2) <- t.toList if c1 != c2 && t1 == t2) yield (c1, c2)
+    for ((c1, t1) <- t.toList; (c2, t2) <- t.toList if c1.id < c2.id && t1 == t2) yield (c1, c2)
   }
 
-  def bannedClashes(t: Map[Course, Timing]) =
-    !((clashes(t) map {case (t1, t2) => avoidClash(t1, t2)}).contains(true))
+  def noBannedClashes(t: Map[Course, Timing]) =
+    !((clashes(t) map {case (t1, t2) => clashToAvoid(t1, t2)}).contains(true))
 
   def recAllSchedules(
     ps : List[TimingPreference]): List[Map[Course, Timing]] = ps match {
@@ -42,10 +49,24 @@ class Scheduler(prefs: List[TimingPreference], avoidClash : (Course, Course) => 
         val ts = a.choices.map(_._2).flatten.toSet
         val heads = (ts map ((t) => (a.course, t))).toList
         val tails = recAllSchedules(bs)
-        for (head<- heads; tail <- tails) yield (tail + head)
+        (for (head<- heads; tail <- tails) yield (tail + head)).filter(noBannedClashes)
   }
 
-  lazy val allSchedules = recAllSchedules(prefs) filter(bannedClashes)
+  def iterSchedules(bound: Int,
+    ps : List[TimingPreference] = prefs): Iterator[Map[Course, Timing]] = ps match {
+      case List() => List(Map[Course, Timing]()).toIterator
+      case a :: bs =>
+        val ts = a.choicesBelow(bound).map(_._2).flatten.toSet
+        val heads = (ts map ((t) => (a.course, t)))
+        val tails = iterSchedules(bound, bs)
+        (tails flatMap {
+          (tail) =>
+            heads map ((head) => tail + head)
+        }).filter(noBannedClashes)
+  }
+  
+
+  lazy val allSchedules = recAllSchedules(prefs)
 
   lazy val groupedSchedules =
     allSchedules.groupBy(worstCase).map {

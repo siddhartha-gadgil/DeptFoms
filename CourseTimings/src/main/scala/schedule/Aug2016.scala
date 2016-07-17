@@ -40,7 +40,10 @@ object Aug2016{
       TP(abhishek, t330, t200, m3, m2, t1100),
       TP.sets(umesh, (1 -> Set(t200, t330)), (2 -> Set(m2, m3)), (3 -> Set(t1100, m11, m12))),
       TP(gadgil, m9, t930, m10, t1100, m11, m12),
-      TP(subhojoy, m10, m11, m12)
+      TP(subhojoy, m10, m11, m12),
+      TP(somu, t1100, t330, m11),
+      TP(nands, t930, t1100),
+      TP(bharali, t1100, m11, t200)
     )
 
   val core1 : Set[Course] = Set(212, 219, 221, 231, 261) map (get)
@@ -48,7 +51,13 @@ object Aug2016{
   val ug3 : Set[Course] = Set(212, 219, 221, 231, 200) map (get) 
   
   val core2 : Set[Course] = Set(223, 232, 242) map (get)
+  
+  val intPhd2= Set(223, 232, 242, 361, 351) map (get)
 
+  val advanced = Set(380, 340, 351) map (get)
+  
+  val bhar = Set(380, 361) map (get)
+  
   def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) = 
     groups.map ((set) => ((set contains(c1)) && (set contains c2) && (c1 != c2))).fold(false)(_||_)
   
@@ -60,4 +69,4 @@ object Aug2016{
 
 import Aug2016._
 
-object Aug2016Scheduler extends Scheduler(prefs, inSameSet(core1, core2, ug3))
+object Aug2016Scheduler extends Scheduler(prefs, inSameSet(core1, intPhd2, ug3, advanced, bhar))
