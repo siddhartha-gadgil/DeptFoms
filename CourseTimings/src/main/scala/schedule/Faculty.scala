@@ -17,7 +17,7 @@ object Faculty{
       ("Abhishek Banerjee", "abhishek"),
       ("Gautam Bharali", "bharali"),
       ("Tirthankar Bhattacharya", "tirtha"),
-      ("Sowmya Das", "somu"),
+      ("Soumya Das", "somu"),
       ("Basudeb Datta", "dattab"),
       ("Siddhartha Gadgil", "gadgil"),
       ("Mrinal K. Ghosh", "mkg"),
