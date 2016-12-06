@@ -1,12 +1,12 @@
 package schedule
 
-import scala.util.Sorting
+// import scala.util.Sorting
 
 import Schedule._
 
 
 case class Schedule(map: Map[Faculty, Timing]) {
-  
+
   def clashes(implicit l : List[Course])
     = (for ((a, x) <- map; (b, y) <- map if x == y && Course.get(a).id < Course.get(b).id) yield (Course.get(a), Course.get(b))).toList
 
@@ -21,7 +21,7 @@ case class Schedule(map: Map[Faculty, Timing]) {
     for ((fac, t) <- map; pref <- Preferences.get(fac) if pref.weight(t) != Some(0)) yield (fac -> pref.weight(t))
 
   def at(t: Timing) = for ((fac, timing) <- map if timing == t) yield (Course.get(fac)(Course.jan2016))
-  
+
   def notClashAt(first: Int, second: Int) = !((clashes(Course.jan2016) map {case (x, y) => (x.id, y.id)}) contains ((first, second)))
 }
 

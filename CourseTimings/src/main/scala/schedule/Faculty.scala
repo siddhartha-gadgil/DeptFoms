@@ -46,8 +46,11 @@ object Faculty{
 
   val janaki = Faculty("Janaki Balakrishnan", "janaki")
 
+  val rukmini = Faculty("Rukmini Dey", "rukmini")
+
   val visiting = List(
-    krishna
+    krishna,
+    rukmini
   )
 
   val all = members ++ inspire ++ visiting
