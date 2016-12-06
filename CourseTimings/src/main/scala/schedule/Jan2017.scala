@@ -49,7 +49,7 @@ object Jan2017{
 
   val core1 : Set[Course] = Set(213, 222, 224, 229, 241) map (get)
 
-  val ug3 : Set[Course] = Set(213, 222, 224, 229, 332) map (get)
+  val ug3 : Set[Course] = Set(213, 222, 224, 229, 332, 327) map (get)
 
   val phd : Set[Course] = Set(326, 327, 350, 332) map (get)
 
