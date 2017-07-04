@@ -34,7 +34,7 @@ class Scheduler(prefs: List[TimingPreference], clashToAvoid : (Course, Course) =
     val rank = worstCase(t)
     (rank, badChoices(t, rank).size)
   }
-  
+
   def clashes(t: Map[Course, Timing]) = {
     for ((c1, t1) <- t.toList; (c2, t2) <- t.toList if c1.id < c2.id && t1 == t2) yield (c1, c2)
   }
@@ -64,7 +64,12 @@ class Scheduler(prefs: List[TimingPreference], clashToAvoid : (Course, Course) =
             heads map ((head) => tail + head)
         }).filter(noBannedClashes)
   }
-  
+
+  def recLowBoundSchedules(bound: Int = 1, ps : List[TimingPreference] = prefs) : (Int, Iterator[Map[Course, Timing]]) =
+    {
+      val iter = iterSchedules(bound, ps)
+      if (!iter.isEmpty) (bound, iter) else recLowBoundSchedules(bound + 1, ps)
+    }
 
   lazy val allSchedules = recAllSchedules(prefs)
 
@@ -79,6 +84,13 @@ class Scheduler(prefs: List[TimingPreference], clashToAvoid : (Course, Course) =
     (head, tail)
   }
 
-  lazy val bestSchedules = groupedSchedules(bestKeys._1)(bestKeys._2)
+  lazy val bestSchedulesCrude = groupedSchedules(bestKeys._1)(bestKeys._2)
+
+  lazy val bestSchedules = {
+    val (rank, iter) = recLowBoundSchedules()
+    val vec = iter.toVector
+    val min = vec.map((s) => badChoices(s, rank).size).min
+    (rank, min, vec.filter(badChoices(_, rank).size == min))
+  }
 
 }
