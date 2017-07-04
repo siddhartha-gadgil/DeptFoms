@@ -1,6 +1,6 @@
 lazy val scalaV = "2.12.2"
 
-val ammV = "0.9.4"
+val ammV = "1.0.0"
 
 val initCommands = """import schedule._; import Aug2016Scheduler._; import Aug2016._"""
 
