@@ -36,6 +36,7 @@ object Faculty {
       ("Harish Seshadri", "harish"),
       ("Pooja Singla", "pooja"),
       ("S. Thangavelu", "veluma"),
+      ("R. Venkatesh", "rvenkat"),
       (" Kaushal Verma", "kverma")
     ) map ((ab) => Faculty(ab._1, ab._2))
 
@@ -80,6 +81,7 @@ object Faculty {
            harish,
            pooja,
            veluma,
+           rvenkat,
            kverma) = members.drop(10)
 
   val List(jaban, mousumi, umesh) = inspire
