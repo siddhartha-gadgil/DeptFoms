@@ -17,12 +17,13 @@ object Jan2018 {
       (229, "Calculus on Manifolds", dattab),
       (241, "ODE", nands),
       (315, "Lie Algebras and their Representations", rvenkat),
+      (335, "Geometric Analysis", vamsi),
       (340, "Advanced Functional Analysis", tirtha),
       (386, "Coxeter Groups", arvind),
       (392, "Random Graphs and interacting particle systems", skiyer)
     ) map ((a) => Course(a._1, a._2, a._3))
 
-  val prefs =
+  lazy val prefs =
     List(
       TP(tirtha, m10, m11, m12),
       TP(manju, t200, t330, m10, t1100),
@@ -30,16 +31,19 @@ object Jan2018 {
       TP(dattab, m11, m10, m12),
       TP(nands, t930, t1100, m10, m3),
       TP(skiyer, t1100, t200, m11),
+      TP(abhishek, t330, t200, m3),
+      TP(rvenkat, t1100, t200, t330),
+      TP(harish, t200, t1100, m12),
       TP.sets(arvind, 1 -> Set(t930, t1100, t200), 2 -> Set(t330), 3 -> Set(m10, m11, m2, m3))
     )
 
-  val core1: Set[Course] = Set(213, 222, 224, 229, 241) map (get)
+  lazy val core1: Set[Course] = Set(213, 222, 224, 229, 241) map (get)
 
-  val ug3: Set[Course] = Set(213, 222, 224, 229, 332, 327) map (get)
+  lazy val ug3: Set[Course] = Set(213, 222, 224, 229) map (get)
 
-  val phd: Set[Course] = Set(326, 327, 350, 332) map (get)
+  lazy val phd: Set[Course] = Set(335) map (get)
 
-  val reps = Set(315, 386) map (get)
+  lazy val reps = Set(315, 386) map (get)
 
 
   def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) =
