@@ -17,7 +17,7 @@ object Jan2018 {
       (229, "Calculus on Manifolds", dattab),
       (241, "ODE", nands),
       (315, "Lie Algebras and their Representations", rvenkat),
-      (335, "Geometric Analysis", vamsi),
+      (339, "Geometric Analysis", vamsi),
       (340, "Advanced Functional Analysis", tirtha),
       (386, "Coxeter Groups", arvind),
       (392, "Random Graphs and interacting particle systems", skiyer)
@@ -41,7 +41,7 @@ object Jan2018 {
 
   lazy val ug3: Set[Course] = Set(213, 222, 224, 229) map (get)
 
-  lazy val phd: Set[Course] = Set(335) map (get)
+  lazy val phd: Set[Course] = Set(339) map (get)
 
   lazy val reps = Set(315, 386) map (get)
 
