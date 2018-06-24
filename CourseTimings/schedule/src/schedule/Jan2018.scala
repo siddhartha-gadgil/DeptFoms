@@ -45,13 +45,6 @@ object Jan2018 {
 
   lazy val reps = Set(315, 386) map (get)
 
-
-  def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) =
-    groups
-      .map((set) => ((set contains (c1)) && (set contains c2) && (c1 != c2)))
-      .fold(false)(_ || _)
-
-
 }
 
 import Jan2018._

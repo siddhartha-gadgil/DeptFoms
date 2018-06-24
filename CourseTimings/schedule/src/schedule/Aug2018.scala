@@ -1,6 +1,6 @@
 package schedule
 
-import Course.get
+import Course._
 
 import Timing._
 
@@ -8,8 +8,8 @@ import Faculty.{all => _, _}
 
 import schedule.{TimingPreference => TP}
 
-object Aug2017 {
-  implicit val aug2017: List[Course] =
+object Aug2018 {
+  implicit val aug2018: List[Course] =
     List(
       (200, "Multivariable Calculus", gudi),
       (212, "Algebra I", abhishek),
@@ -20,7 +20,7 @@ object Aug2017 {
       (231, "Topology", harish),
       (242, "PDE", veluma),
       (261, "Probablity Models", manju),
-      (232, "Intro to Algebraic Topology", subhojoy),
+      (232, "Intro to Algebraic Topology", dattab),
       (338, "Differentiable Manifolds and Lie Groups", vamsi),
       (361, "Probability Theory", skiyer),
       (369, "Random Matrix Theory", manju)
@@ -55,23 +55,11 @@ object Aug2017 {
   val core2: Set[Course] = Set(223, 232, 242) map (get)
 
   val intPhd2 = Set(223, 232, 242, 213) map (get)
-  //
-  // val advanced = Set(380, 340, 351) map (get)
-  //
-  // val bhar = Set(380, 361) map (get)
 
-  def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) =
-    groups
-      .map((set) => ((set contains (c1)) && (set contains c2) && (c1 != c2)))
-      .fold(false)(_ || _)
-
-  // def avoidClash(c1: Course, c2: Course) =
-  //   ((core1 contains(c1)) && (core1 contains c2) && (c1 != c2)) ||
-  //   ((core2 contains(c1)) && (core2 contains c2) && (c1 != c2))
 
 }
 
-import Aug2017._
+import Aug2018._
 
-object Aug2017Scheduler
+object Aug2018Scheduler
     extends Scheduler(prefs, inSameSet(core1, core2, ug3, intPhd2))

@@ -1,6 +1,6 @@
 package schedule
 
-import Course.{jan2016 => _, _}
+import Course._
 
 import Timing._
 
@@ -52,23 +52,6 @@ object Jan2017 {
   val ug3: Set[Course] = Set(213, 222, 224, 229, 332, 327) map (get)
 
   val phd: Set[Course] = Set(326, 327, 350, 332) map (get)
-
-  // val core2 : Set[Course] = Set(223, 232, 242) map (get)
-  //
-  // val intPhd2= Set(223, 232, 242, 361, 351) map (get)
-  //
-  // val advanced = Set(380, 340, 351) map (get)
-
-  // val bhar = Set(380, 361) map (get)
-
-  def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) =
-    groups
-      .map((set) => ((set contains (c1)) && (set contains c2) && (c1 != c2)))
-      .fold(false)(_ || _)
-
-  // def avoidClash(c1: Course, c2: Course) =
-  //   ((core1 contains(c1)) && (core1 contains c2) && (c1 != c2)) ||
-  //   ((core2 contains(c1)) && (core2 contains c2) && (c1 != c2))
 
 }
 

@@ -62,10 +62,6 @@ object Aug2016 {
 
   val bhar = Set(380, 361) map (get)
 
-  def inSameSet(groups: Set[Course]*)(c1: Course, c2: Course) =
-    groups
-      .map((set) => ((set contains (c1)) && (set contains c2) && (c1 != c2)))
-      .fold(false)(_ || _)
 
   def avoidClash(c1: Course, c2: Course) =
     ((core1 contains (c1)) && (core1 contains c2) && (c1 != c2)) ||

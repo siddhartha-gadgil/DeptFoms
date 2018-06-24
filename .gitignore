@@ -27,6 +27,8 @@ shared/.jvm
 *~
 *.orig
 
+out/
+
 # eclipse
 .scala_dependencies
 .buildpath

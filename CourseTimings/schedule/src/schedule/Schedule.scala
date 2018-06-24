@@ -4,18 +4,18 @@ package schedule
 
 import Schedule._
 
-case class Schedule(map: Map[Faculty, Timing]) {
+case class Schedule(map: Map[Faculty, Timing])(implicit l: List[Course],  noClash: Set[Set[Int]]) {
 
-  def clashes(implicit l: List[Course]) =
+  def clashes =
     (for ((a, x) <- map; (b, y) <- map
           if x == y && Course.get(a).id < Course.get(b).id)
       yield (Course.get(a), Course.get(b))).toList
 
-  def avoidClashes(implicit noClash: Set[Set[Int]], l: List[Course]) = {
-    clashes(l) filter ((xy) => bothInSame(noClash)(xy._1.id, xy._2.id))
+  def avoidClashes = {
+    clashes filter ((xy) => bothInSame(noClash)(xy._1.id, xy._2.id))
   }
 
-  def clashSet(implicit l: List[Course]) =
+  def clashSet =
     (map.toList).groupBy(_._2) filter (_._2.size > 1) mapValues ((l) =>
                                                                    for ((a, _) <- l)
                                                                      yield
@@ -33,7 +33,7 @@ case class Schedule(map: Map[Faculty, Timing]) {
       yield (Course.get(fac)(Course.jan2016))
 
   def notClashAt(first: Int, second: Int) =
-    !((clashes(Course.jan2016) map { case (x, y) => (x.id, y.id) }) contains ((first,
+    !((clashes map { case (x, y) => (x.id, y.id) }) contains ((first,
                                                                                second)))
 }
 
@@ -49,11 +49,11 @@ object Schedule {
     Set(213, 222, 224, 229, 241)
   )
 
-  implicit val noClash = core ++ arvindClash
+  // implicit val noClash = core ++ arvindClash
 
   def firstMap = ((Preferences.all map (_.firstPair)).flatten).toMap
 
-  def first = Schedule(firstMap)
+  def first(implicit l: List[Course],  noClash: Set[Set[Int]]) = Schedule(firstMap)
 
   def withBounds(
       maxWeight: Int,
@@ -76,7 +76,8 @@ object Schedule {
       big ++ small
   }
 
-  def atLevel(maxWeight: Int, maxWeightCount: Int)(implicit l: List[Faculty]) =
-    (withBounds(maxWeight, maxWeightCount)(l)) map (Schedule(_))
+  def atLevel(maxWeight: Int, maxWeightCount: Int)(
+    implicit l: List[Course], fac: List[Faculty],  noClash: Set[Set[Int]]) =
+    (withBounds(maxWeight, maxWeightCount)(fac)) map (Schedule(_))
 
 }
