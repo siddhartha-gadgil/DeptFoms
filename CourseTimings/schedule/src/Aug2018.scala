@@ -28,7 +28,15 @@ object Aug2018 {
 
   val prefs =
     List(
-      TP(dattab, m11, m10, m12)
+      TP(dattab, m11, m10, m12),
+      TP(tirtha, m10, m11, m12),
+      TP(nands, t930, t1100, m10),
+      TP.sets(
+        skiyer,
+        1 -> List(t1100),
+        2 -> List(m11),
+        3 -> List(m12, m10)
+      )
     )
 
   val core1: Set[Course] = Set(212, 219, 221, 231, 261) map (get)
