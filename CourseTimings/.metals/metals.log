@@ -130,3 +130,6 @@ scala.reflect.internal.MissingRequirementError: object scala in compiler mirror 
 08:49:43.800 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Aug2018.scala):34:19
 08:53:38.205 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Schedule.scala):6:89
 08:55:21.816 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Scheduler.scala):83:76
+08:58:29.756 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Scheduler.scala):102:16
+09:00:08.843 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Scheduler.scala):86:7
+09:00:25.963 INFO  s.m.m.s.InMemorySymbolIndex - resolveName at Uri(file:///home/gadgil/code/DeptForms/CourseTimings/schedule/src/Scheduler.scala):83:61
