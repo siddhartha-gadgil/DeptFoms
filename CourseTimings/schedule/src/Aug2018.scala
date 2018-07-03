@@ -43,8 +43,10 @@ object Aug2018 {
       TP(riddhi, t200, t1100, t330),
       TP.sets(pooja, 1 -> List(m11, m12), 2 -> List(t1100), 3 -> List(m3)),
       TP.sets(gadgil, 1 -> List(t930), 2 -> List(m9, t1100), 3 -> List(m10, m11), 4 -> List(m12)),
-      TP(rvenkat, t930, m9, m8)
-
+      TP(rvenkat, t930, m9, m8),
+      TP(mkg, t330, t1100, t200),
+      TP.sets(kverma, 1 -> List(m3, t330)),
+      TP.sets(gm, 1 -> (all.toSet - m8))
     )
 
   val core1: Set[Course] = Set(212, 219, 221, 231, 261) map (get)
