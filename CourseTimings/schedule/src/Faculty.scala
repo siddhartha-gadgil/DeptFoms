@@ -52,6 +52,8 @@ object Faculty {
 
   val rukmini = Faculty("Rukmini Dey", "rukmini")
 
+  val riddhi = Faculty("Ridhipratim Basu", "riddhi")
+
   val visiting = List(
     krishna,
     rukmini
