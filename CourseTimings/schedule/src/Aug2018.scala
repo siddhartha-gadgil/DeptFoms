@@ -46,7 +46,8 @@ object Aug2018 {
       TP(rvenkat, t930, m9, m8),
       TP(mkg, t330, t1100, t200),
       TP.sets(kverma, 1 -> List(m3, t330)),
-      TP.sets(gm, 1 -> (all.toSet - m8))
+      TP.sets(gm, 1 -> (all.toSet - m8)),
+      TP(subhojoy, t200, t330, m2)
     )
 
   val core1: Set[Course] = Set(212, 219, 221, 231, 261) map (get)
@@ -55,7 +56,7 @@ object Aug2018 {
 
   val core2: Set[Course] = Set(223, 232, 242) map (get)
 
-  val intPhd2 = Set(223, 232, 242, 213) map (get)
+  val intPhd2 = Set(223, 232, 242) map (get)
 
   val probAdvanced = Set(262, 361, 394) map (get)
 
